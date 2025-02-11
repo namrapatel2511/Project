@@ -6,11 +6,13 @@ function App() {
   const [newTask, setNewTask] = useState({ title: "", description: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/tasks").then((res) => setTasks(res.data));
+    axios.get("http://backend-service.default.svc.cluster.local/tasks
+").then((res) => setTasks(res.data));
   }, []);
 
   const addTask = () => {
-    axios.post("http://localhost:5000/tasks", {
+    axios.post("http://backend-service.default.svc.cluster.local/tasks
+", {
       title: newTask.title,
       description: newTask.description,
       status: "pending",
@@ -18,7 +20,8 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:5000/tasks/${id}`).then(() => window.location.reload());
+    axios.delete(`http://backend-service.default.svc.cluster.local/tasks
+/${id}`).then(() => window.location.reload());
   };
 
   return (
