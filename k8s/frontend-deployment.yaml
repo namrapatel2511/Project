@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
+  name: frontend-deployment  
 spec:
   replicas: 2
   selector:
@@ -13,7 +13,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend
-          image: REPLACE_ECR_REPO_URL
+        - name: frontend  
+          image: 992382839514.dkr.ecr.us-east-1.amazonaws.com/frontend-repo:latest  
+          imagePullPolicy: Always  
           ports:
             - containerPort: 80

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-
-
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ title: "", description: "" });
@@ -24,19 +22,17 @@ function App() {
 
   const deleteTask = (id) => {
     axios.delete(`${API_URL}/tasks/${id}`).then(() => window.location.reload());
-
   };
 
   const markComplete = (id) => {
     axios.patch(`${API_URL}/tasks/${id}`, { status: "completed" })
       .then(() => window.location.reload());
-
   };
 
   return (
     <div className="container">
       <h1>Task Management</h1>
-      
+
       <div className="task-form">
         <input
           type="text"
@@ -48,22 +44,22 @@ function App() {
           placeholder="Description"
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
         />
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask} className="add-btn">Add Task</button>
       </div>
-      
+
       <div className="task-list">
         {tasks.map((task) => (
           <div key={task.id} className="task-card">
-            <div>
+            <div className="task-info">
               <h2>{task.title}</h2>
               <p>{task.description}</p>
-              <span className={task.status === 'pending' ? 'status-pending' : 'status-completed'}>{task.status}</span>
+              <span className={`status ${task.status}`}>{task.status}</span>
             </div>
-            <div>
+            <div className="task-actions">
               {task.status === 'pending' && (
-                <button onClick={() => markComplete(task.id)} className="complete-button">Complete</button>
+                <button onClick={() => markComplete(task.id)} className="complete-btn">Complete</button>
               )}
-              <button onClick={() => deleteTask(task.id)} className="delete-button">Delete</button>
+              <button onClick={() => deleteTask(task.id)} className="delete-btn">Delete</button>
             </div>
           </div>
         ))}
