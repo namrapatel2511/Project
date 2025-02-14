@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "http://k8s-myappingress-aed710839d-1334484464.us-east-1.elb.amazonaws.com";
+
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ title: "", description: "" });
+
+  const API_URL = "http://k8s-myappingress-aed710839d-1334484464.us-east-1.elb.amazonaws.com";
 
   useEffect(() => {
     axios.get(`${API_URL}/tasks`).then((res) => setTasks(res.data));
@@ -22,11 +24,13 @@ function App() {
 
   const deleteTask = (id) => {
     axios.delete(`${API_URL}/tasks/${id}`).then(() => window.location.reload());
+
   };
 
   const markComplete = (id) => {
     axios.patch(`${API_URL}/tasks/${id}`, { status: "completed" })
       .then(() => window.location.reload());
+
   };
 
   return (
