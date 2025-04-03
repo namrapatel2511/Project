@@ -6,7 +6,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ title: "", description: "", time: "", date: "", email_id: "" });
 
-  const API_URL = "http://k8s-myappingress-aed710839d-1334484464.us-east-1.elb.amazonaws.com";
+  const API_URL = "http://54.208.253.226:9001";
 
   useEffect(() => {
     axios.get(`${API_URL}/tasks`).then((res) => setTasks(res.data));
