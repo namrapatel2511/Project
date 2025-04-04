@@ -16,7 +16,7 @@ function App() {
     const { title, description, time, date, email_id } = newTask;
 
     if (!title || !description || !time || !date || !email_id) {
-      alert("Please fill all the fields before adding a task.");
+      alert("Please fill all the fields before adding task.");
       return;
     }
 
